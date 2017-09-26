@@ -1,0 +1,17 @@
+.centered{
+    text-align: center;
+    display: inline-block;
+    margin: 35px auto 35px auto;
+    font-family: 'Quicksand', sans-serif;
+    color: green;
+    border: 1px dotted green;
+    border-radius: 3px;
+}
+
+.leftalign{
+    text-align: left;
+    display: inline-block;
+    margin: 25px auto 15px 5px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.2em;
+}

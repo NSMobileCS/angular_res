@@ -1,20 +1,87 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+<div>
+  <h1 class='leftalign'>
     Welcome to {{title}}!
   </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  <div *ngIf='displaySuccess' class='centered'>
+    <p>
+      thank you for registering with us, {{ user.first_name }}!
+    </p>
+    <p>
+      your email confirmation will be going to {{ user.email }}, and physical mail will be sent to {{ user.st_address }}
+    </p>
+    <form (submit)='clearForm()'>
+      <input type='submit'>
+    </form>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<hr><hr>
 
+
+
+<form (submit)='chkAndSubmit()'>
+
+    first name
+    <input 
+    type="text" 
+    name="email"
+    required 
+    minlength="4" 
+    maxlength="24"
+    [(ngModel)]="user.email"
+    #email="ngModel">
+    <input type='text' name='first_name' required [(ngModel)]='user.first_name'>
+  <hr>
+
+  <span [ngStyle]="{'background-color':fields.last_name.color}">
+    last name
+    <input type='text' name='last_name' required [(ngModel)]='user.last_name'>
+  </span>
+  <hr>
+
+  <span [ngStyle]="{'background-color':fields.email.color}">
+    email
+    <input type='text' name='email' [(ngModel)]='user.email'>
+  </span>
+  <hr>
+
+  <span [ngStyle]="{'background-color':fields.password.color}">
+    password
+    <input type='password' name='password' [(ngModel)]='user.password'>
+  </span>
+  <hr>
+  <span [ngStyle]="{'background-color':fields.pw_confirm.color}">
+    confirm password
+    <input type='password' name='confirm password' [(ngModel)]='user.pw_confirm'>
+  </span>
+  <hr>
+  <span [ngStyle]="{'background-color':fields.st_address.color}">
+    street address
+    <input type='text' name='street address' [(ngModel)]='user.st_address'>
+  </span>
+  <hr>
+
+  apartment number (optional)
+  <input type='text' name='apartment number' [(ngModel)]='user.apt_no'>
+  <hr>
+  state
+  <select type='text' name='state' [(ngModel)]='user.state'>
+    <option *ngFor='let state of usStates'>
+      {{ state }}
+    </option>
+  </select>
+  <hr>
+    are you feeling lucky?
+    <label for='feels_lucky'>
+      yes
+      <input type='radio' name='feels_lucky' value='yes' checked='checked'>
+    </label>
+    <label>
+      no
+      <input type='radio' name='feels_lucky' value='no'>
+    </label>
+    <hr>    
+    <input type='submit' value='submit registration'>
+  <hr>
+  </form>
